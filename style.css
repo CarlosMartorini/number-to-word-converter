@@ -1,0 +1,37 @@
+.container{
+    text-align: center;
+}
+
+#generate{
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000090;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 3px 3px 5px #707070;
+    transition: 0.4s;
+}
+
+#generate:active{
+    box-shadow: 5px 5px 10px #707070;
+    background-color: #2424c4;
+    transition: 0.4s;
+}
+
+#result{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+span{
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color: #e6e6e6;
+}

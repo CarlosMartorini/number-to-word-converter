@@ -1,21 +1,24 @@
-let umADezenove = ['', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez', 'onze', 'doze', 'treze', 'quatorze', 'quize', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'];
+let umADezenove = ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez', 'onze', 'doze', 'treze', 'quatorze', 'quize', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'];
 
 let dezANoventa = ['', 'dez', 'vinte', 'trinta', 'quarenta', 'cinquenta', 'sessenta', 'setenta', 'oitenta', 'noventa'];
 
 let cemAMil = ['', 'cem', 'duzentos', 'trezentos', 'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos', 'mil'];
 
+let counter;
+let numExtenso;
+
 function numbersToWords(){
-    for(let counter = 0; counter <= 1000; counter++){
+    for(counter = 0; counter <= 1000; counter++){
         if(counter < 20){
-            console.log(umADezenove[counter]);
+            numExtenso = umADezenove[counter];
         }else if(counter > 19 && counter < 100){
             let extenso = counter.toString().split('');
             let primeiroNum = extenso[0];
             let segundoNum = extenso[1];
             if(segundoNum === '0'){
-                console.log(`${dezANoventa[primeiroNum]}`);
+                numExtenso = `${dezANoventa[primeiroNum]}`;
             }else{
-                console.log(`${dezANoventa[primeiroNum]} e ${umADezenove[segundoNum]}`);
+                numExtenso = `${dezANoventa[primeiroNum]} e ${umADezenove[segundoNum]}`;
             }
         }else if(counter > 99 && counter < 1000){
             let extenso = counter.toString().split('');
@@ -23,30 +26,40 @@ function numbersToWords(){
             let segundoNum = extenso[1];
             let terceiroNum = extenso[2];
             if(segundoNum === '0' && terceiroNum === '0'){
-                console.log(`${cemAMil[primeiroNum]}`);
+                numExtenso = `${cemAMil[primeiroNum]}`;
             }else if(primeiroNum === '1' && segundoNum === '0' && terceiroNum !== '0'){
-                console.log(`cento e ${umADezenove[terceiroNum]}`);
+                numExtenso = `cento e ${umADezenove[terceiroNum]}`;
             }else if(primeiroNum === '1' && segundoNum === '1' && terceiroNum === '0'){
-                console.log(`cento e ${dezANoventa[segundoNum]}`);
+                numExtenso = `cento e ${dezANoventa[segundoNum]}`;
             }else if(primeiroNum === '1' && segundoNum !== '1' && terceiroNum === '0'){
-                console.log(`cento e ${dezANoventa[segundoNum]}`);
+                numExtenso = `cento e ${dezANoventa[segundoNum]}`;
             }else if(primeiroNum === '1' && segundoNum === '1' && terceiroNum !== '0'){
-                console.log(`cento e ${umADezenove[segundoNum + terceiroNum]}`);
+                numExtenso = `cento e ${umADezenove[segundoNum + terceiroNum]}`;
             }else if(primeiroNum === '1' && segundoNum !== '1'){
-                console.log(`cento e ${dezANoventa[segundoNum]} e ${umADezenove[terceiroNum]}`);
+                numExtenso = `cento e ${dezANoventa[segundoNum]} e ${umADezenove[terceiroNum]}`;
             }else if(segundoNum !== '0' && terceiroNum === '0'){
-                console.log(`${cemAMil[primeiroNum]} e ${dezANoventa[segundoNum]}`);
+                numExtenso = `${cemAMil[primeiroNum]} e ${dezANoventa[segundoNum]}`;
             }else if(segundoNum === '0' && terceiroNum !== '0'){
-                console.log(`${cemAMil[primeiroNum]} e ${umADezenove[terceiroNum]}`);
+                numExtenso = `${cemAMil[primeiroNum]} e ${umADezenove[terceiroNum]}`;
             }else if(segundoNum === '1' && terceiroNum !== '0'){
-                console.log(`${cemAMil[primeiroNum]} e ${umADezenove[segundoNum + terceiroNum]}`);
+                numExtenso = `${cemAMil[primeiroNum]} e ${umADezenove[segundoNum + terceiroNum]}`;
             }else if(segundoNum !== '0' && terceiroNum !== '0'){
-                console.log(`${cemAMil[primeiroNum]} e ${dezANoventa[segundoNum]} e ${umADezenove[terceiroNum]}`);
+                numExtenso = `${cemAMil[primeiroNum]} e ${dezANoventa[segundoNum]} e ${umADezenove[terceiroNum]}`;
             }
         }else if(counter === 1000){
-            console.log(`mil`);
+            numExtenso = `mil`;
         }
+
+        printResult();
     }
 }
 
-numbersToWords();
+document.getElementById('generate').onclick = numbersToWords;
+
+function printResult(){
+    const getResult = document.getElementById('result');
+    const createPrint = document.createElement('span');
+    createPrint.textContent = `${counter}: ${numExtenso}`;
+    getResult.appendChild(createPrint);
+    createPrint.classList.add();
+}
